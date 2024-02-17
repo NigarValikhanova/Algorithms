@@ -1194,3 +1194,341 @@ class Program
 ```
 
 These are the solutions for the tasks related to the `Stack` data structure in C#. Let me know if you need further explanations or assistance!
+
+Here are the solutions for the tasks related to the `Queue` data structure in C#:
+
+**Easy:**
+1. Write a program to add elements to a queue and print them.
+
+```csharp
+using System;
+using System.Collections;
+
+class Program
+{
+    static void Main()
+    {
+        Queue queue = new Queue();
+        queue.Enqueue(1);
+        queue.Enqueue(2);
+        queue.Enqueue(3);
+
+        Console.WriteLine("Elements added to the queue:");
+        foreach (var item in queue)
+        {
+            Console.WriteLine(item);
+        }
+    }
+}
+```
+
+2. Write a program to remove elements from a queue.
+
+```csharp
+using System;
+using System.Collections;
+
+class Program
+{
+    static void Main()
+    {
+        Queue queue = new Queue();
+        queue.Enqueue(1);
+        queue.Enqueue(2);
+        queue.Enqueue(3);
+
+        Console.WriteLine("Elements removed from the queue:");
+        while (queue.Count > 0)
+        {
+            Console.WriteLine(queue.Dequeue());
+        }
+    }
+}
+```
+
+**Medium:**
+3. Write a program to implement a circular queue.
+
+```csharp
+using System;
+
+class CircularQueue
+{
+    private int[] array;
+    private int front;
+    private int rear;
+    private int capacity;
+    private int count;
+
+    public CircularQueue(int size)
+    {
+        capacity = size;
+        array = new int[capacity];
+        front = 0;
+        rear = -1;
+        count = 0;
+    }
+
+    public void Enqueue(int item)
+    {
+        if (IsFull())
+        {
+            throw new InvalidOperationException("Queue is full");
+        }
+
+        rear = (rear + 1) % capacity;
+        array[rear] = item;
+        count++;
+    }
+
+    public int Dequeue()
+    {
+        if (IsEmpty())
+        {
+            throw new InvalidOperationException("Queue is empty");
+        }
+
+        int dequeuedItem = array[front];
+        front = (front + 1) % capacity;
+        count--;
+        return dequeuedItem;
+    }
+
+    public int Peek()
+    {
+        if (IsEmpty())
+        {
+            throw new InvalidOperationException("Queue is empty");
+        }
+
+        return array[front];
+    }
+
+    public bool IsEmpty()
+    {
+        return count == 0;
+    }
+
+    public bool IsFull()
+    {
+        return count == capacity;
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        CircularQueue queue = new CircularQueue(5);
+        queue.Enqueue(1);
+        queue.Enqueue(2);
+        queue.Enqueue(3);
+        queue.Enqueue(4);
+        queue.Enqueue(5);
+
+        Console.WriteLine("Elements in the circular queue:");
+        while (!queue.IsEmpty())
+        {
+            Console.WriteLine(queue.Dequeue());
+        }
+    }
+}
+```
+
+4. Write a program to reverse the first "K" elements of a queue.
+
+```csharp
+using System;
+using System.Collections;
+
+class Program
+{
+    static void Main()
+    {
+        Queue queue = new Queue();
+        queue.Enqueue(1);
+        queue.Enqueue(2);
+        queue.Enqueue(3);
+        queue.Enqueue(4);
+        queue.Enqueue(5);
+
+        int k = 3;
+        ReverseFirstKElements(queue, k);
+
+        Console.WriteLine("Reversed first " + k + " elements of the queue:");
+        while (queue.Count > 0)
+        {
+            Console.WriteLine(queue.Dequeue());
+        }
+    }
+
+    static void ReverseFirstKElements(Queue queue, int k)
+    {
+        if (queue.Count < k)
+        {
+            throw new InvalidOperationException("Queue size is less than k");
+        }
+
+        Stack tempStack = new Stack();
+
+        for (int i = 0; i < k; i++)
+        {
+            tempStack.Push(queue.Dequeue());
+        }
+
+        while (tempStack.Count > 0)
+        {
+            queue.Enqueue(tempStack.Pop());
+        }
+
+        for (int i = 0; i < queue.Count - k; i++)
+        {
+            queue.Enqueue(queue.Dequeue());
+        }
+    }
+}
+```
+
+**Hard:**
+5. Write a program to implement a queue using two stacks.
+
+```csharp
+using System;
+using System.Collections;
+
+class QueueUsingStacks
+{
+    private Stack stack1;
+    private Stack stack2;
+
+    public QueueUsingStacks()
+    {
+        stack1 = new Stack();
+        stack2 = new Stack();
+    }
+
+    public void Enqueue(int item)
+    {
+        stack1.Push(item);
+    }
+
+    public int Dequeue()
+    {
+        if (IsEmpty())
+        {
+            throw new InvalidOperationException("Queue is empty");
+        }
+
+        if (stack2.Count == 0)
+        {
+            while (stack1.Count > 0)
+            {
+                stack2.Push(stack1.Pop());
+            }
+        }
+
+        return (int)stack2.Pop();
+    }
+
+    public int Peek()
+    {
+        if (IsEmpty())
+        {
+            throw new InvalidOperationException("Queue is empty");
+        }
+
+        if (stack2.Count == 0)
+        {
+            while (stack1.Count > 0)
+            {
+                stack2.Push(stack1.Pop());
+            }
+        }
+
+        return (int)stack2.Peek();
+    }
+
+    public bool IsEmpty()
+    {
+        return stack1.Count == 0 && stack2.Count == 0;
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        QueueUsingStacks queue = new QueueUsingStacks();
+        queue.Enqueue(1);
+        queue.Enqueue(2);
+        queue.Enqueue(3);
+
+        Console.WriteLine("Dequeued elements from the queue:");
+        while (!queue.IsEmpty())
+        {
+            Console.WriteLine(queue.Dequeue());
+        }
+    }
+}
+```
+
+6. Write a program to find the maximum element in each sliding window of size "K" in a given queue.
+
+```csharp
+using System;
+using System.Collections;
+
+class Program
+{
+    static void Main()
+    {
+        Queue queue = new Queue();
+        queue.Enqueue(1);
+        queue
+
+.Enqueue(3);
+        queue.Enqueue(5);
+        queue.Enqueue(7);
+        queue.Enqueue(9);
+
+        int k = 3;
+        FindMaximumInSlidingWindow(queue, k);
+    }
+
+    static void FindMaximumInSlidingWindow(Queue queue, int k)
+    {
+        Stack maxStack = new Stack();
+
+        for (int i = 0; i < k; i++)
+        {
+            while (maxStack.Count > 0 && (int)queue.Peek() >= (int)maxStack.Peek())
+            {
+                maxStack.Pop();
+            }
+            maxStack.Push(queue.Dequeue());
+        }
+
+        Console.WriteLine("Maximum elements in sliding windows of size " + k + ":");
+        Console.WriteLine(maxStack.Peek());
+
+        while (queue.Count > 0)
+        {
+            int removedItem = (int)maxStack.Pop();
+            if (removedItem == (int)queue.Peek())
+            {
+                queue.Dequeue();
+            }
+
+            while (maxStack.Count > 0 && (int)queue.Peek() >= (int)maxStack.Peek())
+            {
+                maxStack.Pop();
+            }
+
+            maxStack.Push(queue.Dequeue());
+            Console.WriteLine(maxStack.Peek());
+        }
+    }
+}
+```
+
+These are the solutions for the tasks related to the `Queue` data structure in C#. Let me know if you need further explanations or assistance!
