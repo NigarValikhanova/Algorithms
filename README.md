@@ -204,3 +204,123 @@ class Program
 ```
 
 These are the solutions for the array-related tasks in C#. Let me know if you need solutions for tasks from other topics or if you need further explanations!
+
+
+Apologies for the oversight. Let's focus on providing solutions for the array-related tasks in C# as requested. Here are the solutions for the remaining array tasks:
+
+**ArrayList:**
+
+**Easy:**
+1. Write a program to add elements to an ArrayList and print them.
+
+```csharp
+using System;
+using System.Collections;
+
+class Program
+{
+    static void Main()
+    {
+        ArrayList arrayList = new ArrayList();
+        arrayList.Add(1);
+        arrayList.Add(2);
+        arrayList.Add(3);
+
+        Console.WriteLine("Elements in ArrayList:");
+        foreach (var item in arrayList)
+        {
+            Console.WriteLine(item);
+        }
+    }
+}
+```
+
+**Medium:**
+3. Write a program to find the frequency of occurrence of an element in an ArrayList.
+
+```csharp
+using System;
+using System.Collections;
+
+class Program
+{
+    static void Main()
+    {
+        ArrayList arrayList = new ArrayList() { 1, 2, 3, 2, 2, 4, 5, 2 };
+        int elementToFind = 2;
+
+        int frequency = FindFrequency(arrayList, elementToFind);
+
+        Console.WriteLine($"Frequency of {elementToFind}: {frequency}");
+    }
+
+    static int FindFrequency(ArrayList arrayList, int element)
+    {
+        int frequency = 0;
+        foreach (var item in arrayList)
+        {
+            if (item.Equals(element))
+            {
+                frequency++;
+            }
+        }
+        return frequency;
+    }
+}
+```
+
+**Hard:**
+6. Write a program to implement a binary search on an ArrayList.
+
+```csharp
+using System;
+using System.Collections;
+
+class Program
+{
+    static void Main()
+    {
+        ArrayList arrayList = new ArrayList() { 2, 4, 6, 8, 10, 12, 14, 16, 18, 20 };
+        int elementToFind = 12;
+
+        int index = BinarySearch(arrayList, elementToFind);
+
+        if (index != -1)
+        {
+            Console.WriteLine($"{elementToFind} found at index {index}");
+        }
+        else
+        {
+            Console.WriteLine($"{elementToFind} not found in the ArrayList");
+        }
+    }
+
+    static int BinarySearch(ArrayList arrayList, int element)
+    {
+        int left = 0;
+        int right = arrayList.Count - 1;
+
+        while (left <= right)
+        {
+            int mid = left + (right - left) / 2;
+
+            if ((int)arrayList[mid] == element)
+            {
+                return mid;
+            }
+            else if ((int)arrayList[mid] < element)
+            {
+                left = mid + 1;
+            }
+            else
+            {
+                right = mid - 1;
+            }
+        }
+
+        return -1;
+    }
+}
+```
+
+These are the solutions for the ArrayList-related tasks in C#. Let me know if you need solutions for tasks from other topics or if you need further explanations!
