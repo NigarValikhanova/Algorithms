@@ -897,3 +897,300 @@ class SeparateChainingHashtable
 ```
 
 These are the solutions for the tasks related to the `Hashtable` data structure in C#. Let me know if you need further explanations or assistance!
+
+Here are the solutions for the tasks related to the `Stack` data structure in C#:
+
+**Easy:**
+1. Write a program to push elements onto a stack and print them.
+
+```csharp
+using System;
+using System.Collections;
+
+class Program
+{
+    static void Main()
+    {
+        Stack stack = new Stack();
+        stack.Push(1);
+        stack.Push(2);
+        stack.Push(3);
+
+        Console.WriteLine("Elements pushed onto the stack:");
+        foreach (var item in stack)
+        {
+            Console.WriteLine(item);
+        }
+    }
+}
+```
+
+2. Write a program to pop elements from a stack.
+
+```csharp
+using System;
+using System.Collections;
+
+class Program
+{
+    static void Main()
+    {
+        Stack stack = new Stack();
+        stack.Push(1);
+        stack.Push(2);
+        stack.Push(3);
+
+        Console.WriteLine("Popping elements from the stack:");
+        while (stack.Count > 0)
+        {
+            Console.WriteLine(stack.Pop());
+        }
+    }
+}
+```
+
+**Medium:**
+3. Write a program to reverse a string using a stack.
+
+```csharp
+using System;
+using System.Collections;
+
+class Program
+{
+    static void Main()
+    {
+        string input = "Hello";
+        string reversed = ReverseString(input);
+        Console.WriteLine($"Original string: {input}");
+        Console.WriteLine($"Reversed string: {reversed}");
+    }
+
+    static string ReverseString(string input)
+    {
+        Stack<char> stack = new Stack<char>();
+        foreach (char c in input)
+        {
+            stack.Push(c);
+        }
+
+        char[] reversedChars = new char[input.Length];
+        for (int i = 0; i < input.Length; i++)
+        {
+            reversedChars[i] = stack.Pop();
+        }
+
+        return new string(reversedChars);
+    }
+}
+```
+
+4. Write a program to evaluate a postfix expression using a stack.
+
+```csharp
+using System;
+using System.Collections;
+
+class Program
+{
+    static void Main()
+    {
+        string postfixExpression = "23*5+";
+        int result = EvaluatePostfixExpression(postfixExpression);
+        Console.WriteLine($"Result of the postfix expression \"{postfixExpression}\": {result}");
+    }
+
+    static int EvaluatePostfixExpression(string expression)
+    {
+        Stack<int> stack = new Stack<int>();
+
+        foreach (char c in expression)
+        {
+            if (char.IsDigit(c))
+            {
+                stack.Push(c - '0');
+            }
+            else
+            {
+                int operand2 = stack.Pop();
+                int operand1 = stack.Pop();
+
+                switch (c)
+                {
+                    case '+':
+                        stack.Push(operand1 + operand2);
+                        break;
+                    case '-':
+                        stack.Push(operand1 - operand2);
+                        break;
+                    case '*':
+                        stack.Push(operand1 * operand2);
+                        break;
+                    case '/':
+                        stack.Push(operand1 / operand2);
+                        break;
+                }
+            }
+        }
+
+        return stack.Pop();
+    }
+}
+```
+
+**Hard:**
+5. Write a program to implement a stack using two queues.
+
+```csharp
+using System;
+using System.Collections;
+using System.Collections.Generic;
+
+class StackUsingQueues
+{
+    Queue<int> queue1;
+    Queue<int> queue2;
+
+    public StackUsingQueues()
+    {
+        queue1 = new Queue<int>();
+        queue2 = new Queue<int>();
+    }
+
+    public void Push(int value)
+    {
+        // Enqueue the new element to queue1
+        queue1.Enqueue(value);
+    }
+
+    public int Pop()
+    {
+        if (queue1.Count == 0)
+        {
+            throw new InvalidOperationException("Stack is empty");
+        }
+
+        // Move all elements from queue1 to queue2 except the last one
+        while (queue1.Count > 1)
+        {
+            queue2.Enqueue(queue1.Dequeue());
+        }
+
+        // Dequeue the last element from queue1, which is the top element of the stack
+        int topElement = queue1.Dequeue();
+
+        // Swap queue1 and queue2
+        Queue<int> temp = queue1;
+        queue1 = queue2;
+        queue2 = temp;
+
+        return topElement;
+    }
+
+    public int Peek()
+    {
+        if (queue1.Count == 0)
+        {
+            throw new InvalidOperationException("Stack is empty");
+        }
+
+        // Move all elements from queue1 to queue2 except the last one
+        while (queue1.Count > 1)
+        {
+            queue2.Enqueue(queue1.Dequeue());
+        }
+
+        // Peek at the last element from queue1, which is the top element of the stack
+        int topElement = queue1.Peek();
+
+        // Enqueue the top element back to queue1
+        queue2.Enqueue(queue1.Dequeue());
+
+        // Swap queue1 and queue2
+        Queue<int> temp = queue1;
+        queue1 = queue2;
+        queue2 = temp;
+
+        return topElement;
+    }
+
+    public bool IsEmpty()
+    {
+        return queue1.Count == 0;
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        StackUsingQueues stack = new StackUsingQueues();
+        stack.Push(1);
+        stack.Push(2);
+        stack.Push(3);
+
+        Console.WriteLine("Popping elements from the stack:");
+        while (!stack.IsEmpty())
+        {
+            Console.WriteLine(stack.Pop());
+        }
+    }
+}
+```
+
+6. Write a program to sort elements in a stack.
+
+```csharp
+
+
+using System;
+using System.Collections;
+
+class Program
+{
+    static void Main()
+    {
+        Stack stack = new Stack();
+        stack.Push(3);
+        stack.Push(1);
+        stack.Push(2);
+
+        Console.WriteLine("Original stack:");
+        PrintStack(stack);
+
+        Stack sortedStack = SortStack(stack);
+
+        Console.WriteLine("Sorted stack:");
+        PrintStack(sortedStack);
+    }
+
+    static void PrintStack(Stack stack)
+    {
+        foreach (var item in stack)
+        {
+            Console.WriteLine(item);
+        }
+    }
+
+    static Stack SortStack(Stack stack)
+    {
+        Stack tempStack = new Stack();
+
+        while (stack.Count > 0)
+        {
+            int temp = (int)stack.Pop();
+
+            while (tempStack.Count > 0 && (int)tempStack.Peek() > temp)
+            {
+                stack.Push(tempStack.Pop());
+            }
+
+            tempStack.Push(temp);
+        }
+
+        return tempStack;
+    }
+}
+```
+
+These are the solutions for the tasks related to the `Stack` data structure in C#. Let me know if you need further explanations or assistance!
