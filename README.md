@@ -573,3 +573,327 @@ class Program
 ```
 
 These are the solutions for the tasks related to the `SortedList` data structure in C#. Let me know if you need further explanations or assistance!
+
+Here are the solutions for the tasks related to the `Hashtable` data structure in C#:
+
+**Easy:**
+1. Write a program to add key-value pairs to a Hashtable and print them.
+
+```csharp
+using System;
+using System.Collections;
+
+class Program
+{
+    static void Main()
+    {
+        Hashtable hashtable = new Hashtable();
+        hashtable.Add("A", 1);
+        hashtable.Add("B", 2);
+        hashtable.Add("C", 3);
+
+        Console.WriteLine("Key-Value pairs in Hashtable:");
+        foreach (DictionaryEntry entry in hashtable)
+        {
+            Console.WriteLine($"Key: {entry.Key}, Value: {entry.Value}");
+        }
+    }
+}
+```
+
+2. Write a program to check if a key exists in a Hashtable.
+
+```csharp
+using System;
+using System.Collections;
+
+class Program
+{
+    static void Main()
+    {
+        Hashtable hashtable = new Hashtable();
+        hashtable.Add("A", 1);
+        hashtable.Add("B", 2);
+        hashtable.Add("C", 3);
+
+        string keyToCheck = "B";
+
+        if (hashtable.ContainsKey(keyToCheck))
+        {
+            Console.WriteLine($"Key {keyToCheck} exists in the Hashtable.");
+        }
+        else
+        {
+            Console.WriteLine($"Key {keyToCheck} does not exist in the Hashtable.");
+        }
+    }
+}
+```
+
+**Medium:**
+3. Write a program to remove a key from a Hashtable.
+
+```csharp
+using System;
+using System.Collections;
+
+class Program
+{
+    static void Main()
+    {
+        Hashtable hashtable = new Hashtable();
+        hashtable.Add("A", 1);
+        hashtable.Add("B", 2);
+        hashtable.Add("C", 3);
+
+        string keyToRemove = "B";
+
+        if (hashtable.ContainsKey(keyToRemove))
+        {
+            hashtable.Remove(keyToRemove);
+            Console.WriteLine($"Key {keyToRemove} removed from the Hashtable.");
+        }
+        else
+        {
+            Console.WriteLine($"Key {keyToRemove} does not exist in the Hashtable.");
+        }
+    }
+}
+```
+
+4. Write a program to find the most frequent element in a Hashtable.
+
+```csharp
+using System;
+using System.Collections;
+
+class Program
+{
+    static void Main()
+    {
+        Hashtable hashtable = new Hashtable();
+        hashtable.Add("A", 1);
+        hashtable.Add("B", 2);
+        hashtable.Add("C", 1);
+        hashtable.Add("D", 3);
+        hashtable.Add("E", 2);
+
+        string mostFrequentKey = FindMostFrequentElement(hashtable);
+
+        Console.WriteLine($"Most frequent element in Hashtable: {mostFrequentKey}");
+    }
+
+    static string FindMostFrequentElement(Hashtable hashtable)
+    {
+        Hashtable frequencyMap = new Hashtable();
+
+        foreach (DictionaryEntry entry in hashtable)
+        {
+            if (!frequencyMap.ContainsKey(entry.Value))
+            {
+                frequencyMap.Add(entry.Value, 1);
+            }
+            else
+            {
+                frequencyMap[entry.Value] = (int)frequencyMap[entry.Value] + 1;
+            }
+        }
+
+        int maxFrequency = 0;
+        string mostFrequentKey = null;
+
+        foreach (DictionaryEntry entry in frequencyMap)
+        {
+            if ((int)entry.Value > maxFrequency)
+            {
+                maxFrequency = (int)entry.Value;
+                mostFrequentKey = entry.Key.ToString();
+            }
+        }
+
+        return mostFrequentKey;
+    }
+}
+```
+
+**Hard:**
+5. Write a program to implement a Hashtable using open addressing.
+
+```csharp
+// Implementation of Hashtable using open addressing is quite complex and requires handling collisions, probing, resizing, etc.
+// Here's a basic example of adding elements to Hashtable using open addressing:
+
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        OpenAddressingHashtable hashtable = new OpenAddressingHashtable(5);
+        hashtable.Add("A", 1);
+        hashtable.Add("B", 2);
+        hashtable.Add("C", 3);
+        hashtable.Add("D", 4);
+
+        Console.WriteLine("Key-Value pairs in Hashtable:");
+        hashtable.Print();
+    }
+}
+
+class OpenAddressingHashtable
+{
+    private string[] keys;
+    private int[] values;
+    private int capacity;
+    private int size;
+
+    public OpenAddressingHashtable(int capacity)
+    {
+        this.capacity = capacity;
+        keys = new string[capacity];
+        values = new int[capacity];
+    }
+
+    public void Add(string key, int value)
+    {
+        int index = GetHash(key);
+
+        while (keys[index] != null)
+        {
+            index = (index + 1) % capacity;
+        }
+
+        keys[index] = key;
+        values[index] = value;
+        size++;
+    }
+
+    public int Get(string key)
+    {
+        int index = GetHash(key);
+
+        while (keys[index] != key)
+        {
+            index = (index + 1) % capacity;
+        }
+
+        return values[index];
+    }
+
+    private int GetHash(string key)
+    {
+        int hash = 0;
+        foreach (char c in key)
+        {
+            hash += c;
+        }
+        return hash % capacity;
+    }
+
+    public void Print()
+    {
+        for (int i = 0; i < capacity; i++)
+        {
+            if (keys[i] != null)
+            {
+                Console.WriteLine($"Key: {keys[i]}, Value: {values[i]}");
+            }
+        }
+    }
+}
+```
+
+6. Write a program to implement a Hashtable using separate chaining.
+
+```csharp
+// Implementation of Hashtable using separate chaining is also quite complex as it involves maintaining a list of elements at each index of the table.
+// Here's a basic example of adding elements to Hashtable using separate chaining:
+
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main()
+    {
+        SeparateChainingHashtable hashtable = new SeparateChainingHashtable(5);
+        hashtable.Add("A", 1);
+        hashtable.Add("B", 2);
+        hashtable.Add("C", 3);
+        hashtable.Add("D", 4);
+
+        Console.WriteLine("Key-Value pairs in Hashtable:");
+        hashtable.Print();
+    }
+}
+
+class SeparateChainingHashtable
+{
+    private List<KeyValuePair<string, int>>[] items;
+    private int capacity;
+
+    public SeparateChainingHashtable(int capacity)
+    {
+        this.capacity = capacity;
+        items = new List<KeyValuePair<string, int>>[capacity];
+    }
+
+    public void Add(string key, int value)
+    {
+        int index = GetHash(key);
+
+        if (items[index] == null)
+        {
+            items[index] = new List<KeyValuePair<string, int>>();
+        }
+
+        items[index].Add(new KeyValuePair<string, int>(key, value));
+    }
+
+    public int Get(string key)
+    {
+        int index = GetHash(key);
+
+        if (items[index] != null)
+        {
+            foreach (var pair in items[index])
+            {
+                if (pair.Key == key)
+                {
+                    return pair.Value;
+                }
+            }
+        }
+
+        throw new KeyNotFoundException("Key not found in Hashtable.");
+    }
+
+    private int GetHash(string key)
+    {
+        int hash = 0;
+        foreach (char c in key)
+        {
+            hash += c;
+        }
+        return hash % capacity;
+    }
+
+    public void Print()
+    {
+        for (int i = 0; i < capacity; i++)
+        {
+            if (items[i
+
+] != null)
+            {
+                foreach (var pair in items[i])
+                {
+                    Console.WriteLine($"Key: {pair.Key}, Value: {pair.Value}");
+                }
+            }
+        }
+    }
+}
+```
+
+These are the solutions for the tasks related to the `Hashtable` data structure in C#. Let me know if you need further explanations or assistance!
