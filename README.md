@@ -1,4 +1,4 @@
-<!--
+
 # Arrays
 
 Sure, I'll provide solutions for each of the tasks. Let's start with the array-related tasks in C#:
@@ -1533,4 +1533,3 @@ class Program
 ```
 
 These are the solutions for the tasks related to the `Queue` data structure in C#. Let me know if you need further explanations or assistance!
---!>
