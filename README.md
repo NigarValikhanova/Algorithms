@@ -1,8 +1,3 @@
-
-# Arrays
-
-Sure, I'll provide solutions for each of the tasks. Let's start with the array-related tasks in C#:
-
 ### Arrays:
 **Easy:**
 1. Write a program to find the sum of all elements in an array.
