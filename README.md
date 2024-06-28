@@ -61,4 +61,3 @@ Toplam: \( 4 + 10 + 18 = 32 \)
 - **Tətbiq Sahəsi:** Kiçik ölçülü problemlərdə və ya optimallaşdırma tələb etməyən hallarda istifadə oluna bilər.
 
 Başqa suallarınız varsa və ya başqa mövzular haqqında məlumat istəsəniz, mənə bildirin!
---!>
