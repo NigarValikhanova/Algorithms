@@ -1,4 +1,4 @@
-Brute force alqoritmi bir problemin mümkün bütün həll yollarını tədqiq edərək doğru cavabı tapmağa çalışan bir yanaşmadır. Bu metodun əsas xüsusiyyəti, bütün mümkün kombinasiyaları yoxlamasıdır ki, bu da sadə hallarda işlək olsa da, böyük hallarda çox vaxt tələb edə bilər. Gəlin, bir misal üzərində brute force alqoritmini izah edək.
+<!-- Brute force alqoritmi bir problemin mümkün bütün həll yollarını tədqiq edərək doğru cavabı tapmağa çalışan bir yanaşmadır. Bu metodun əsas xüsusiyyəti, bütün mümkün kombinasiyaları yoxlamasıdır ki, bu da sadə hallarda işlək olsa da, böyük hallarda çox vaxt tələb edə bilər. Gəlin, bir misal üzərində brute force alqoritmini izah edək.
 
 ### Misal: İki Vektorun Skalyar Hasili
 
